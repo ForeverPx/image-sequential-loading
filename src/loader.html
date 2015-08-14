@@ -1,0 +1,53 @@
+<html>
+<head>
+	<title></title>
+	<style>
+		img{
+			display:none;
+		}
+	</style>
+</head>
+<body>
+	<div>
+		<img src='http://img.cnmo-img.com.cn/976_800x600/975518.jpg' width='400' height='400'/>
+	</div>
+	<div>
+		<img src='http://photocdn.sohu.com/20130716/Img381760713.jpg' width='400' height='400'/>
+	</div>
+	<div>
+		<img src='http://image.tianjimedia.com/uploadImages/2013/309/53BFO310LOP4.jpg' width='400' height='400'/>
+	</div>
+	<div>
+		<img src='http://f2.dn.anqu.com/allimg/1311/65-131106100137.jpg' width='400' height='400'/>
+	</div>
+	
+	<script>
+		var srcArr = [];
+		var imgElems = document.getElementsByTagName("img");
+		var index = 0;
+		for(var i=0;i<imgElems.length;i++){
+			srcArr.push(imgElems[i].attributes.removeNamedItem("src"));
+		}
+		
+		function trigger(){
+			index = index + 1;
+			if(index > imgElems.length - 1){
+				return ;
+			}else{
+				loadImg(index);
+			}
+		}
+		
+		function loadImg(index){
+			var img = imgElems[index];
+			img.onload = function(){  
+				img.style.cssText = "display:block";
+				trigger();  
+			};  
+			img.src = srcArr[index].value;
+		}
+		
+		loadImg(index);
+	</script>
+</body>
+</html>
